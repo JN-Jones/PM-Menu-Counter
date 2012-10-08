@@ -11,9 +11,9 @@ function pm_info()
 	return array(
 		"name"			=> "PM Menu Counter",
 		"description"	=> "Shows the number of PM's in Folders",
-		"website"		=> "http://mybbdemo.tk/forum-33.html",
+		"website"		=> "http://jonesboard.tk/",
 		"author"		=> "Jones",
-		"authorsite"	=> "http://mybbdemo.tk",
+		"authorsite"	=> "http://jonesboard.tk/",
 		"version"		=> "1.0",
 		"guid" 			=> "9b25ded9254013b742a41f37efe9140e",
 		"compatibility" => "*"
