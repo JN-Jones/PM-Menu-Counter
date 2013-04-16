@@ -11,12 +11,13 @@ function pm_info()
 	return array(
 		"name"			=> "PM Menu Counter",
 		"description"	=> "Shows the number of PM's in Folders",
-		"website"		=> "http://jonesboard.tk/",
+		"website"		=> "http://jonesboard.de/",
 		"author"		=> "Jones",
-		"authorsite"	=> "http://jonesboard.tk/",
+		"authorsite"	=> "http://jonesboard.de/",
 		"version"		=> "1.0",
 		"guid" 			=> "9b25ded9254013b742a41f37efe9140e",
-		"compatibility" => "*"
+		"compatibility" => "*",
+		"myplugins_id"	=> "pm-menu-counter"
 	);
 }
 
