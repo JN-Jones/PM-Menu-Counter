@@ -14,9 +14,9 @@ function pm_info()
 		"website"		=> "http://jonesboard.de/",
 		"author"		=> "Jones",
 		"authorsite"	=> "http://jonesboard.de/",
-		"version"		=> "1.0",
+		"version"		=> "1.0.1",
 		"guid" 			=> "9b25ded9254013b742a41f37efe9140e",
-		"compatibility" => "*",
+		"compatibility" => "17*,18*",
 		"myplugins_id"	=> "pm-menu-counter"
 	);
 }
@@ -25,17 +25,19 @@ function pm_activate()
 {
 	require MYBB_ROOT."inc/adminfunctions_templates.php";
 	find_replace_templatesets("usercp_nav_messenger", "#".preg_quote('{$folderlinks}')."#i", '{$mybb->folderlinksnum}');	
+	find_replace_templatesets("usercp_nav_messenger_folder", "#".preg_quote('<div>')."#i", '<div><span style="float:right;">({$unread}/{$numb})</span>');
 }
 
 function pm_deactivate()
 {
 	require MYBB_ROOT."inc/adminfunctions_templates.php";
 	find_replace_templatesets("usercp_nav_messenger", "#".preg_quote('{$mybb->folderlinksnum}')."#i", '{$folderlinks}');
+	find_replace_templatesets("usercp_nav_messenger_folder", "#".preg_quote('<span style="float:right;">({$unread}/{$numb})</span>')."#i", '');
 }
 
 function pm_pm()
 {
-	global $db, $mybb, $cache;
+	global $db, $mybb, $templates;
 
 	$foldersexploded = explode("$%%$", $mybb->user['pmfolders']);
 	foreach($foldersexploded as $key => $folders)
@@ -64,8 +66,11 @@ function pm_pm()
 			$unread = $unread['pms_unread'];
 		} else
 			$unread=0;
-		
-		$mybb->folderlinksnum .= "<div><span style=\"float:right;\">($unread/$numb)</span><a href=\"private.php?fid=$folderinfo[0]\" class=\"usercp_nav_item {$class}\">$folderinfo[1]</a></div>\n";
+
+		$folder_id = $folderinfo[0];
+		$folder_name = $folderinfo[1];
+
+		eval("\$mybb->folderlinksnum .= \"".$templates->get("usercp_nav_messenger_folder")."\";");
 	}
 }
 ?>
